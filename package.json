@@ -1,0 +1,22 @@
+{
+  "name": "csv-date-event-static-api-generator",
+  "version": "1.0.0",
+  "description": "Program to convert csv date event to JSON",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Kharis Khasburrahman",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^26.1.0",
+    "mock-fs": "^4.12.0",
+    "sinon": "^9.0.2"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "p-limit": "^3.0.2"
+  }
+}

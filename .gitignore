@@ -109,6 +109,8 @@ dist
 # IDEs & Editors Ignores                #
 #---------------------------------------#
 
+.vscode
+
 # Sublime Text
 /*.sublime*
 .sublime-gulp.cache
