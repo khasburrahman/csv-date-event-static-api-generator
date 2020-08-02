@@ -1,0 +1,20 @@
+name: Continious Integration on Master Pull Request
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2.1.1
+      with:
+        node-version: 12
+    - name: lint source code
+      run: npm run lint
+      timeout-minutes: 30
+    - name: test source code
+      run: npm test
+      timeout-minutes: 30
