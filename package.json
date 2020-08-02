@@ -4,7 +4,8 @@
   "description": "Program to convert csv date event to JSON",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ./src"
   },
   "author": "Kharis Khasburrahman",
   "license": "MIT",

@@ -10,7 +10,7 @@ const fs = require('fs');
 class CSVRepo {
   /**
    * initialize class
-   * @param {String} target directory path string   
+   * @param {String} target directory path string
    */
   constructor(target) {
     this.target = target;
