@@ -1,4 +1,3 @@
-const fs = require('fs');
 const mockfs = require('mock-fs');
 const CSVRepo = require('../repository/csv');
 
@@ -48,11 +47,15 @@ describe('csv repo test', () => {
       {
         date: '1-2-2010',
         category: 'IDN',
+        repeatable: 'F',
+        repeatable_year_period: '',
         event: 'Hari libur',
       },
       {
         date: '20-9-2020',
         category: 'PHL',
+        repeatable: 'F',
+        repeatable_year_period: '',
         event: 'Holiday',
       },
     ]);
