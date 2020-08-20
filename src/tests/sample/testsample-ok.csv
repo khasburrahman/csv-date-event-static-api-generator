@@ -1,4 +1,7 @@
 date,category,is_repeatable,repeatable_year_period,event
 1-2-2010,IDN,F,,Hari libur
 20-9-2020,PHL,F,,Holiday
-
+21-9-2020,PHL,T,XXXX-XXXX,Holiday1
+24-9-2020,PHL,T,XXXX-2003,Holiday2
+24-9-2020,PHL,T,2005-XXXX,Holiday3
+29-9-2020,PHL,T,2003-2006,Holiday4

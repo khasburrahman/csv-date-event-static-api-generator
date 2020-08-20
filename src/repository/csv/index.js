@@ -1,4 +1,5 @@
 require('./types');
+const {ANY_YEAR} = require('../../config');
 
 const csvtojson = require('csvtojson');
 const csvReader = csvtojson();
@@ -16,10 +17,6 @@ class CSVRepo {
     this.target = target;
   }
 
-  createMapKey(csvdata) {
-    return csvdata.date+csvdata.category;
-  }
-
   /**
    * read CSV file
    * @param {String} target (optional) csv file returns array of object
@@ -29,9 +26,9 @@ class CSVRepo {
     const raw = await csvReader.fromFile(target || this.target);
     const mapcsv = new Map();
 
-    return raw.map(e => {
+    raw.forEach((e) => {
       let tempData;
-      const key = this.createMapKey(e);
+      const key = generateMapKey(e);
 
       if (mapcsv.has(key)) {
         tempData = mapcsv.get(key);
@@ -44,16 +41,23 @@ class CSVRepo {
         mapcsv.set(key, tempData);
       }
 
-      const splityearperiod = e.repeatable_year_period.split('-');
-      const isany = (e) => (e === 'XXXX') ? -1 : e;
-      const yearperiod = {from: isany(splityearperiod[0]), to: isany(splityearperiod[1])};
+      const spltyear = e.repeatable_year_period.split('-');
+      const yearperiod = {
+        from: formatYear(spltyear[0]),
+        to: formatYear(spltyear[1]),
+      };
 
       const isrepeat = e.is_repeatable;
       tempData.is_repeatable = (isrepeat === 'T') ? true : false;
-      tempData.repeatable_year_period.push(yearperiod);
+
+      if (tempData.is_repeatable) {
+        tempData.repeatable_year_period.push(yearperiod);
+      }
+
       tempData.event.push(e.event);
-      return tempData;
     });
+
+    return Array.from(mapcsv.values());
   }
 
   /**
@@ -67,6 +71,24 @@ class CSVRepo {
         .filter((e) => e.split('.').pop() === 'csv');
     return validFilename;
   }
+};
+
+/**
+ * this function will generate key map for csvdata
+ * @param {*} csvdata
+ * @return {String}
+ */
+function generateMapKey(csvdata) {
+  return csvdata.date + csvdata.category;
+}
+
+/**
+ * format year to any year if XXXX
+ * @param {String} e - year string
+ * @return {String} year string, also alter XXXX to any year
+ */
+function formatYear(e) {
+  return (e === 'XXXX') ? ANY_YEAR : e;
 };
 
 module.exports = CSVRepo;

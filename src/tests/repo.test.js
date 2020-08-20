@@ -1,6 +1,6 @@
 const mockfs = require('mock-fs');
 const CSVRepo = require('../repository/csv');
-const { ANY_YEAR } = require('../config');
+const {ANY_YEAR} = require('../config');
 
 describe('csv repo test', () => {
   /** @type {CSVRepo} */
@@ -63,16 +63,18 @@ describe('csv repo test', () => {
         date: '21-9-2020',
         category: 'PHL',
         is_repeatable: true,
-        repeatable_year_period: [],
+        repeatable_year_period: [
+          {from: ANY_YEAR, to: ANY_YEAR},
+        ],
         event: ['Holiday1'],
       },
       {
         date: '24-9-2020',
         category: 'PHL',
-        is_repeatable: false,
+        is_repeatable: true,
         repeatable_year_period: [
-          {from: ANY_YEAR, to: 2003},
-          {from: 2005, to: ANY_YEAR},
+          {from: ANY_YEAR, to: '2003'},
+          {from: '2005', to: ANY_YEAR},
         ],
         event: [
           'Holiday2',
@@ -84,9 +86,9 @@ describe('csv repo test', () => {
         category: 'PHL',
         is_repeatable: true,
         repeatable_year_period: [
-          {from: 2003, to: 2006},
+          {from: '2003', to: '2006'},
         ],
-        event: 'Holiday4',
+        event: ['Holiday4'],
       },
     ]);
   });
