@@ -13,6 +13,7 @@
     "eslint": "^7.5.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^26.1.0",
+    "@types/jest": "^26.0.10",
     "mock-fs": "^4.12.0",
     "sinon": "^9.0.2"
   },
