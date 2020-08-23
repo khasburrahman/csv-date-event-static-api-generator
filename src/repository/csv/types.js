@@ -1,12 +1,12 @@
 // TODO: edited from mobile please check jsdocs in desktop
 
 /**
- * @typedef {Object} CSVData
- * @property {String} date - Date
+ * @typedef {Object} DateInput
+ * @property {CustomDate} date - Date
  * @property {String} category - Category
  * @property {boolean} is_repeatable_year - Category
  * @property {Array.<YearPeriod>} repeatable_year_period - Category
- * @property {String} event - Event
+ * @property {Array.<String>} event - Event
  */
 
 /**

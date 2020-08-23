@@ -1,6 +1,7 @@
 const mockfs = require('mock-fs');
 const CSVRepo = require('../repository/csv');
 const {ANY_YEAR} = require('../config');
+const CustomDate = require('../customdate');
 
 describe('csv repo test', () => {
   /** @type {CSVRepo} */
@@ -46,21 +47,21 @@ describe('csv repo test', () => {
     const csvData = await csvRepo.read('./src/tests/sample/testsample-ok.csv');
     expect(csvData).toStrictEqual([
       {
-        date: '1-2-2010',
+        date: new CustomDate('2-1-2010'),
         category: 'IDN',
         is_repeatable: false,
         repeatable_year_period: [],
         event: ['Hari libur'],
       },
       {
-        date: '20-9-2020',
+        date: new CustomDate('9-20-2020'),
         category: 'PHL',
         is_repeatable: false,
         repeatable_year_period: [],
         event: ['Holiday'],
       },
       {
-        date: '21-9-2020',
+        date: new CustomDate('9-21-2020'),
         category: 'PHL',
         is_repeatable: true,
         repeatable_year_period: [
@@ -69,7 +70,7 @@ describe('csv repo test', () => {
         event: ['Holiday1'],
       },
       {
-        date: '24-9-2020',
+        date: new CustomDate('9-24-2020'),
         category: 'PHL',
         is_repeatable: true,
         repeatable_year_period: [
@@ -82,7 +83,7 @@ describe('csv repo test', () => {
         ],
       },
       {
-        date: '29-9-2020',
+        date: new CustomDate('9-29-2020'),
         category: 'PHL',
         is_repeatable: true,
         repeatable_year_period: [

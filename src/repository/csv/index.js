@@ -1,9 +1,10 @@
 require('./types');
-const {ANY_YEAR} = require('../../config');
 
 const csvtojson = require('csvtojson');
 const csvReader = csvtojson();
 const fs = require('fs');
+const {formatYear, generateMapKey} = require('./util');
+const CustomDate = require('../../customdate');
 
 /**
  * Class that handle CSV input
@@ -20,7 +21,7 @@ class CSVRepo {
   /**
    * read CSV file
    * @param {String} target (optional) csv file returns array of object
-   * @return {Promise.<CSVData>}
+   * @return {Promise.<DateInput>}
    */
   async read(target) {
     const raw = await csvReader.fromFile(target || this.target);
@@ -35,6 +36,7 @@ class CSVRepo {
       } else {
         tempData = {
           ...e,
+          date: new CustomDate(e.date),
           repeatable_year_period: [],
           event: [],
         };
@@ -71,24 +73,6 @@ class CSVRepo {
         .filter((e) => e.split('.').pop() === 'csv');
     return validFilename;
   }
-};
-
-/**
- * this function will generate key map for csvdata
- * @param {*} csvdata
- * @return {String}
- */
-function generateMapKey(csvdata) {
-  return csvdata.date + csvdata.category;
-}
-
-/**
- * format year to any year if XXXX
- * @param {String} e - year string
- * @return {String} year string, also alter XXXX to any year
- */
-function formatYear(e) {
-  return (e === 'XXXX') ? ANY_YEAR : e;
 };
 
 module.exports = CSVRepo;

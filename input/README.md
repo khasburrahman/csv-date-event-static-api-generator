@@ -3,7 +3,7 @@ Can put in subfolder, will read all csv file inside this directory
 
 Format: csv Header: 
 - date:  
-  Format: (dd-mm-yyyy)  
+  Format: (mm-dd-yyyy)  
   For repeatable events, please fill the year as XXXX to differentiate with non repeatable events, also prefer to put it before any repeatable events
 
 - category:  
