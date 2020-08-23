@@ -1,5 +1,5 @@
 const mockfs = require('mock-fs');
-const CSVRepo = require('../repository/csv');
+const DateInputRepo = require('../repository/csvdateinput');
 const {ANY_YEAR} = require('../config');
 const CustomDate = require('../customdate');
 
@@ -14,7 +14,7 @@ describe('csv repo test', () => {
   };
 
   beforeAll(() => {
-    csvRepo = new CSVRepo('./test');
+    csvRepo = new DateInputRepo('./test');
   });
 
   afterEach(() => {
