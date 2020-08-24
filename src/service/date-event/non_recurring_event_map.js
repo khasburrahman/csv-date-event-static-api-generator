@@ -1,28 +1,37 @@
 /**
+ * @typedef {import('../../types')}
+ */
+
+/**
  * Class to handle non recurring date event mapping
  */
 class NonRecurringEventMap {
   /**
    * initialize event map obejcts
    *
-   * EventMap Structure
-   * {
-   *   [category]: {
-   *     [year]: {
-   *       [month]: {
-   *         [date]: DateEvent
-   *       }
-   *     }
-   *   }
-   * }
+
    */
   constructor() {
+    /**
+     * {Map.<String, Map<String, Map<String, Map<String, DateInput>>>>}
+     *
+     * EventMap Structure
+     * {
+     *   [category]: {
+     *     [year]: {
+     *       [month]: {
+     *         [date]: CustomDate
+     *       }
+     *     }
+     *   }
+     * }
+     */
     this.map = new Map();
   }
 
   /**
    * add events to event map object
-   * @param {Array.<DateEvent>} dateEvents
+   * @param {Array.<DateInput>} dateEvents
    */
   addEvents(dateEvents) {
     dateEvents.forEach((e) => {
@@ -33,7 +42,7 @@ class NonRecurringEventMap {
         d,
       } = e;
 
-      addEventMap([category, y, m, d], this.map, dateEvents);
+      pushToEventMap([category, y, m, d], this.map, dateEvents);
     });
   }
 
@@ -53,7 +62,7 @@ class NonRecurringEventMap {
  * @param {DateEvent} dateEvent
  * @return {bool}
  */
-function addEventMap(keys, map, dateEvent) {
+function pushToEventMap(keys, map, dateEvent) {
   if (keys.length === 1) {
     map.set(keys[0], dateEvent);
     return;
@@ -69,7 +78,7 @@ function addEventMap(keys, map, dateEvent) {
     nextMap = map.get(key);
   }
 
-  return addEventMap(keys, nextMap, dateEvent);
+  return pushToEventMap(keys, nextMap, dateEvent);
 }
 
 module.exports = NonRecurringEventMap;

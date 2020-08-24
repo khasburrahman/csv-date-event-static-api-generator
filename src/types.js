@@ -1,4 +1,6 @@
-// TODO: edited from mobile please check jsdocs in desktop
+/**
+ * @typedef {import('../../customdate') CustomDate}
+ */
 
 /**
  * @typedef {Object} DateInput

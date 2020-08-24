@@ -1,5 +1,18 @@
+/**
+ * @typedef {import('../types')}
+ */
+
 const EventMap = require('../service/date-event/non_recurring_event_map');
 
+/**
+ * factory method to generate date input object
+ * @param {*} cat
+ * @param {*} d
+ * @param {*} m
+ * @param {*} y
+ * @param {*} e
+ * @return {DateInput}
+ */
 const eventMapFactory = (cat, d, m, y, e) => ({
   category: cat,
   d, m, y,
