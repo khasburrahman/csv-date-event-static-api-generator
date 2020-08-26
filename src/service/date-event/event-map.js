@@ -5,11 +5,10 @@
 /**
  * Class to handle non recurring date event mapping
  */
-class NonRecurringEventMap {
+class EventMap {
   /**
    * initialize event map obejcts
    *
-
    */
   constructor() {
     /**
@@ -81,4 +80,4 @@ function pushToEventMap(keys, map, dateEvent) {
   return pushToEventMap(keys, nextMap, dateEvent);
 }
 
-module.exports = NonRecurringEventMap;
+module.exports = EventMap;
